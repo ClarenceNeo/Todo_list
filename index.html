@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Todoist</title>
 </head>
+<style>
+  .checked_title {
+    text-decoration: line-through;
+  }
+</style>
 <body>
   <div class="container">
     <form id="add_bar" class="add">
@@ -11,6 +16,8 @@
       <button type="submit">+</button>
     </form>
     <div id="list">
+    </div>
+    <div id="checked">
     </div>
   </div>
   <script src="./JS/storage.js"></script>

@@ -30,18 +30,16 @@
 
   }
 
-  // add('hi');
-
-  // add('hello');
-
-  // function del(id){
-  //   task_list.forEach(function(e, index){
-  //     if(e.id == id){
-  //       task_list.splice(index,1);
-  //     }
-  //   })
-  //   sync();
-  // }
+/*
+  function del(id){
+    task_list.forEach(function(e, index){
+      if(e.id == id){
+        task_list.splice(index,1);
+      }
+    })
+    sync();
+  }
+  */
 
   function find_index(id){
     return task_list.findIndex(function(e){
@@ -70,18 +68,32 @@
 
   function render() {
     var card_list = document.getElementById('list');
+    var checked_list = document.getElementById('checked');
     card_list.innerHTML = '';
+    checked_list.innerHTML = '';
 
     for(var i=0; i<task_list.length; i++){
       var card = document.createElement('div');
+
+      if(task_list[i].completed){
+        card.innerHTML = `
+        <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
+        <label class="checked_title" for="checkItem${task_list[i].id}">${task_list[i].title}</label>
+        <button class="del_btn" id="btn${task_list[i].id}">×</button>
+        `;
+        checked_list.appendChild(card);
+        continue;
+      }
       card.innerHTML=`
-      <input type="checkbox">
-      <span>${task_list[i].title}</span>
+      <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
+      <label for="checkItem${task_list[i].id}">${task_list[i].title}</label>
       <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;
       card_list.appendChild(card);
+
     }
     delBtn();
+    checkBtn();
   }
 
   function addBtn(){
@@ -107,7 +119,24 @@
           render();
       })
     }
+  }
 
+  function changeCheck(id){
+    task_list.forEach(function(e, index){
+      if(e.id == id){
+        e.completed = (!e.completed);
+      }
+      sync();
+    });
+  }
+
+  function checkBtn(){
+    for(var i=0; i<task_list.length; i++){
+      document.getElementById('checkItem'+task_list[i].id).addEventListener('click',function(){
+          changeCheck(this.id.substring(9));
+          render();
+      })
+    }
   }
 
   function init(){
