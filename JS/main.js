@@ -30,6 +30,36 @@
 
   }
 
+  // add('hi');
+
+  // add('hello');
+
+  // function del(id){
+  //   task_list.forEach(function(e, index){
+  //     if(e.id == id){
+  //       task_list.splice(index,1);
+  //     }
+  //   })
+  //   sync();
+  // }
+
+  function find_index(id){
+    return task_list.findIndex(function(e){
+      if(e.id == id)
+        return true;
+    })
+  }
+
+  function del(id){
+    var index = find_index(id);
+    if(index != -1){
+      task_list.splice(index, 1);
+      sync();
+    }
+  }
+
+  del(5);
+
   function inc(){
     var last_id = S.get('last_id');
     return S.set('last_id', last_id + 1);
