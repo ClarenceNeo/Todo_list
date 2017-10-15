@@ -5,8 +5,8 @@
   init_data();
 
   function init_data(){
-    var task_list = S.get('task_list');
-    var last_id = S.get('last_id');
+    task_list = S.get('task_list');
+    last_id = S.get('last_id');
     if(!task_list){
       task_list = [];
       S.set('task_list', task_list);
