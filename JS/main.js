@@ -77,15 +77,42 @@
       card.innerHTML=`
       <input type="checkbox">
       <span>${task_list[i].title}</span>
-      <button>×</button>
+      <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;
-      console.log(card);
       card_list.appendChild(card);
     }
+    delBtn();
+  }
+
+  function addBtn(){
+    var form = document.getElementById('add_bar');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = document.getElementById('add_bar_content');
+      if(!input.value){
+        alert('请输入内容！');
+      }else{
+        add(input.value);
+        render();
+        input.value = '';
+      }
+    })
+  }
+
+  function delBtn(){
+    for(var i=0; i<task_list.length; i++){
+      document.getElementById('btn'+task_list[i].id).addEventListener('click',function(){
+          del(this.id.substring(3));
+          sync();
+          render();
+      })
+    }
+
   }
 
   function init(){
     render();
+    addBtn();
   }
 
   init();
