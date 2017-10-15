@@ -17,14 +17,27 @@
     }
   }
 
-  // function add(task) {
-  //   S.set('task_list', task);
-  // }
+  function add(title, completed){
+    completed = completed || false;
+    var new_item = {
+      id: S.get('last_id') + 1,
+      title: title,
+      completed: completed,
+    }
+    task_list.push(new_item);
+    inc();
+    sync();
 
-  // add({
-  //   title: 'yo',
-  //   completed: false,
-  // })
+  }
 
-  // console.log('s:  ',S.get('task_list'));
+  function inc(){
+    var last_id = S.get('last_id');
+    return S.set('last_id', last_id + 1);
+  }
+
+  function sync(){
+    S.set('task_list',task_list);
+  }
+
+  console.log(S.get('task_list'));
 })();
