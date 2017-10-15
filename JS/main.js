@@ -58,8 +58,6 @@
     }
   }
 
-  del(5);
-
   function inc(){
     var last_id = S.get('last_id');
     return S.set('last_id', last_id + 1);
@@ -69,5 +67,26 @@
     S.set('task_list',task_list);
   }
 
-  console.log(S.get('task_list'));
+
+  function render() {
+    var card_list = document.getElementById('list');
+    card_list.innerHTML = '';
+
+    for(var i=0; i<task_list.length; i++){
+      var card = document.createElement('div');
+      card.innerHTML=`
+      <input type="checkbox">
+      <span>${task_list[i].title}</span>
+      <button>×</button>
+      `;
+      console.log(card);
+      card_list.appendChild(card);
+    }
+  }
+
+  function init(){
+    render();
+  }
+
+  init();
 })();
