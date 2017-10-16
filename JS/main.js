@@ -78,7 +78,7 @@
       if(task_list[i].completed){
         card.innerHTML = `
         <label><input checked="checked" id="checkItem${task_list[i].id}" type="checkbox"></label>
-        <input class="checked_title text_box" value = "${task_list[i].title}">
+        <input type="text" readonly="readonly" id="titleContent${task_list[i].id}" class="checked_title text_box" value = "${task_list[i].title}">
         <button class="del_btn" id="btn${task_list[i].id}">×</button>
         `;
         checked_list.appendChild(card);
@@ -86,7 +86,7 @@
       }
       card.innerHTML=`
       <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
-      <input class="text_box" value = "${task_list[i].title}">
+      <input id="titleContent${task_list[i].id}" class="text_box" value = "${task_list[i].title}">
       <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;
       card_list.appendChild(card);
@@ -94,6 +94,7 @@
     }
     delBtn();
     checkBtn();
+    inputContent();
   }
 
   function addBtn(){
@@ -122,6 +123,18 @@
     }
   }
 
+
+  function update(id, title) {
+    var task_index = find_index(id);
+    if (task_index === -1) return;
+
+    var task = task_list[task_index];
+    task.title = title;
+
+    sync();
+  }
+
+
   function changeCheck(id){
     task_list.forEach(function(e, index){
       if(e.id == id){
@@ -144,6 +157,35 @@
       item.addEventListener('click',function(){
           changeCheck(this.id.substring(9));
           render();
+      })
+    }
+  }
+
+  function inputContent(){
+    for(var i=0; i<task_list.length; i++){
+      var item = document.getElementById('titleContent'+task_list[i].id);
+      item.addEventListener('keydown',handler);
+      function handler(e){
+        if (e.keyCode == 13) {
+          var val = document.getElementById('titleContent'+this.id.substring(12)).value;
+          var id = this.id.substring(12);
+          if(val == ''){
+            del(this.id.substring(12));
+          }else{
+            update(id,val);
+          }
+          render();
+        }
+      }
+      item.addEventListener('blur',function(){
+        var val = document.getElementById('titleContent'+this.id.substring(12)).value;
+        var id = this.id.substring(12);
+        if(val == ''){
+          del(this.id.substring(12));
+        }else{
+          update(id,val);
+        }
+        render();
       })
     }
   }
