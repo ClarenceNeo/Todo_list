@@ -77,8 +77,8 @@
 
       if(task_list[i].completed){
         card.innerHTML = `
-        <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
-        <label class="checked_title" for="checkItem${task_list[i].id}">${task_list[i].title}</label>
+        <label><input checked="checked" id="checkItem${task_list[i].id}" type="checkbox"></label>
+        <input class="checked_title text_box" for="checkItem${task_list[i].id}" value = "${task_list[i].title}">
         <button class="del_btn" id="btn${task_list[i].id}">×</button>
         `;
         checked_list.appendChild(card);
@@ -86,7 +86,7 @@
       }
       card.innerHTML=`
       <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
-      <label for="checkItem${task_list[i].id}">${task_list[i].title}</label>
+      <input class="text_box" for="checkItem${task_list[i].id}" value = "${task_list[i].title}">
       <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;
       card_list.appendChild(card);
@@ -113,7 +113,8 @@
 
   function delBtn(){
     for(var i=0; i<task_list.length; i++){
-      document.getElementById('btn'+task_list[i].id).addEventListener('click',function(){
+      var item = document.getElementById('btn'+task_list[i].id);
+      item.addEventListener('click',function(){
           del(this.id.substring(3));
           sync();
           render();
@@ -125,6 +126,10 @@
     task_list.forEach(function(e, index){
       if(e.id == id){
         e.completed = (!e.completed);
+        if(e.completed == true){
+          var str = task_list.splice(index, 1)
+          task_list = task_list.concat(str);
+        }
       }
       sync();
     });
@@ -132,7 +137,8 @@
 
   function checkBtn(){
     for(var i=0; i<task_list.length; i++){
-      document.getElementById('checkItem'+task_list[i].id).addEventListener('click',function(){
+      var item = document.getElementById('checkItem'+task_list[i].id);
+      item.addEventListener('click',function(){
           changeCheck(this.id.substring(9));
           render();
       })
