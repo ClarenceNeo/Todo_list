@@ -129,6 +129,9 @@
         if(e.completed == true){
           var str = task_list.splice(index, 1)
           task_list = task_list.concat(str);
+        }else{
+          var str = task_list.splice(index, 1)
+          task_list = task_list.concat(str);
         }
       }
       sync();
