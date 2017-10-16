@@ -72,13 +72,13 @@
     card_list.innerHTML = '';
     checked_list.innerHTML = '';
 
-    for(var i=0; i<task_list.length; i++){
+    for(var i = task_list.length - 1; i >= 0; i--){
       var card = document.createElement('div');
 
       if(task_list[i].completed){
         card.innerHTML = `
         <label><input checked="checked" id="checkItem${task_list[i].id}" type="checkbox"></label>
-        <input class="checked_title text_box" for="checkItem${task_list[i].id}" value = "${task_list[i].title}">
+        <input class="checked_title text_box" value = "${task_list[i].title}">
         <button class="del_btn" id="btn${task_list[i].id}">×</button>
         `;
         checked_list.appendChild(card);
@@ -86,7 +86,7 @@
       }
       card.innerHTML=`
       <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
-      <input class="text_box" for="checkItem${task_list[i].id}" value = "${task_list[i].title}">
+      <input class="text_box" value = "${task_list[i].title}">
       <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;
       card_list.appendChild(card);
