@@ -75,9 +75,12 @@
     for(var i = task_list.length - 1; i >= 0; i--){
       var card = document.createElement('div');
 
+      card.setAttribute('class','list-item');
+
       if(task_list[i].completed){
         card.innerHTML = `
-        <label><input checked="checked" id="checkItem${task_list[i].id}" type="checkbox"></label>
+        <input checked="checked" id="checkItem${task_list[i].id}" type="checkbox">
+        <label for="checkItem${task_list[i].id}" class="checkedBtn"></label>
         <input type="text" readonly="readonly" id="titleContent${task_list[i].id}" class="checked_title text_box" value = "${task_list[i].title}">
         <button class="del_btn" id="btn${task_list[i].id}">×</button>
         `;
@@ -85,7 +88,8 @@
         continue;
       }
       card.innerHTML=`
-      <label><input id="checkItem${task_list[i].id}" type="checkbox"></label>
+      <input id="checkItem${task_list[i].id}" type="checkbox">
+      <label for="checkItem${task_list[i].id}" class="checkedBtn"></label>
       <input id="titleContent${task_list[i].id}" class="text_box" value = "${task_list[i].title}">
       <button class="del_btn" id="btn${task_list[i].id}">×</button>
       `;

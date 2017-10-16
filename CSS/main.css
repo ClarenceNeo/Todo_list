@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+  position: relative;
+
+}
+::-webkit-input-placeholder {
+  color:#aaa;
+  font-weight: lighter;
+  font-style: italic;
+}
+input,button,select,textarea{outline:none}
+
+body {
+  background: #F5F5F5;
+}
+.container {
+  width: 780px;
+  margin: 0 auto;
+}
+.tac {
+  text-align: center;
+}
+
+.title {
+  font-family: Times;
+  font-weight: lighter;
+  color: rgba(237, 58, 62, 0.6);
+  font-size: 50px;
+}
+.checked_title {
+  text-decoration: line-through;
+}
+.text_box {
+  border: none;
+}
+#add_bar {
+  /*display: inline-block;*/
+  margin-bottom: 20px;
+}
+#add_bar_content {
+  /*min-height: 65px;*/
+  width: 550px;
+  font-size: 25px;
+  padding: 15px 30px;
+  border: none;
+  color: #aaa;
+  font-weight: lighter;
+  box-shadow: 1px 1px 4px #aaa;
+}
+
+#list,
+#checked{
+  margin-left: 115px;
+  display: inline-block;
+  box-shadow: 1px 1px 4px #aaa;
+}
+
+.list-item {
+  background: #fff;
+  border-bottom: 1px solid #F5F5F5;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.checkedBtn {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    /*margin-right: 15px;*/
+    font-size: 14px;
+}
+
+.checkedBtn:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    position: absolute;
+    left: 15px;
+    bottom: -2px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+}
+
+input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    text-shadow: .5px .5px .5px rgba(0, 0, 0, .2);
+    font-size: 19px;
+    color: rgba(237, 58, 62, 0.6);
+    text-align: center;
+    line-height: 15px;
+}
+
+.text_box {
+  width: 475px;
+  font-size: 22px;
+  font-weight: lighter;
+  padding: 10px 20px;
+}
+
+.del_btn {
+  visibility: hidden;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  color: #eee;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.checked_title {
+  color: rgba(212, 49, 53, 0.85);
+}
+
+.list-item:hover .del_btn {
+  visibility: visible;
+}
+
+.add_btn {
+  position: absolute;
+  right: 120px;
+  top: 10px;
+  border: none;
+  font-size: 25px;
+  color: #ccc;
+  background: transparent;
+  cursor: pointer;
+}

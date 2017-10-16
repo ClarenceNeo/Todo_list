@@ -4,19 +4,13 @@
   <meta charset="UTF-8">
   <title>Todoist</title>
 </head>
-<style>
-  .checked_title {
-    text-decoration: line-through;
-  }
-  .text_box {
-    border: none;
-  }
-</style>
+<link rel="stylesheet" type="text/css" href="./CSS/main.css">
 <body>
   <div class="container">
-    <form id="add_bar" class="add">
-      <input id="add_bar_content" type="text">
-      <button type="submit">+</button>
+    <h1 class="tac title">Todos</h1>
+    <form id="add_bar" class="add tac">
+      <input autocomplete="off" placeholder="What needs to be done?" id="add_bar_content" type="text">
+      <button class="add_btn" type="submit">+</button>
     </form>
     <div id="list">
     </div>
